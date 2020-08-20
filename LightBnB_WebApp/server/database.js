@@ -36,17 +36,8 @@ const getUserWithEmail = function(email) {
       console.log('error!', err);
     });
 
-  // let user;
-  // for (const userId in users) {
-  //   user = users[userId];
-  //   if (user.email.toLowerCase() === email.toLowerCase()) {
-  //     break;
-  //   } else {
-  //     user = null;
-  //   }
-  // }
-  // return Promise.resolve(user);
-}
+
+};
 exports.getUserWithEmail = getUserWithEmail;
 
 /**
@@ -73,9 +64,7 @@ const getUserWithId = function(id) {
       console.log('error!', err);
     });
 
-
-  // return Promise.resolve(users[id]);
-}
+};
 exports.getUserWithId = getUserWithId;
 
 
@@ -87,7 +76,7 @@ exports.getUserWithId = getUserWithId;
 const addUser = function(user) {
 
   // console.log(users);
-  const values = [user.name, user.email, user.password]
+  const values = [user.name, user.email, user.password];
   console.log(values);
 
   return pool.query(`
@@ -101,14 +90,8 @@ const addUser = function(user) {
     })
     .catch(err => {
       console.log(err);
-    })
-
-
-  // const userId = Object.keys(users).length + 1;
-  // user.id = userId;
-  // users[userId] = user;
-  // return Promise.resolve(user);
-}
+    });
+};
 exports.addUser = addUser;
 
 /// Reservations
@@ -120,7 +103,7 @@ exports.addUser = addUser;
  */
 const getAllReservations = function(guest_id, limit = 10) {
 
-  const values = [guest_id, limit]
+  const values = [guest_id, limit];
 
   return pool.query(`
   SELECT properties.id, properties.title, properties.cost_per_night, reservations.start_date, avg(property_reviews.rating) as average_rating
@@ -139,11 +122,8 @@ const getAllReservations = function(guest_id, limit = 10) {
     })
     .catch(err => {
       console.log(err);
-    })
-
-
-  // return getAllProperties(null, 2);
-}
+    });
+};
 exports.getAllReservations = getAllReservations;
 
 /// Properties
@@ -204,7 +184,7 @@ const getAllProperties = function(options, limit = 10) {
     .then(res => res.rows);
 
 
-}
+};
 exports.getAllProperties = getAllProperties;
 
 
@@ -247,13 +227,7 @@ const addProperty = function(property) {
       return res.rows[0];
     })
     .catch(err => {
-      console.log(err)
+      console.log(err);
     });
-
-
-  // const propertyId = Object.keys(properties).length + 1;
-  // property.id = propertyId;
-  // properties[propertyId] = property;
-  // return Promise.resolve(property);
-}
+};
 exports.addProperty = addProperty;
